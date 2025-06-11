@@ -331,6 +331,53 @@
             transform: translateY(0);
             height: auto; /* Retorna à altura normal */
         }
+
+        /* Estilos para os controles de música */
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Fixa na tela */
+            bottom: 20px; /* A 20px da parte inferior */
+            left: 50%; /* Centraliza horizontalmente */
+            transform: translateX(-50%); /* Ajuste para centralizar */
+            z-index: 500; /* Acima de outros elementos, mas abaixo do overlay */
+        }
+
+        .music-controls button {
+            background-color: #e91e63;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .music-controls button:hover {
+            background-color: #c2185b;
+            transform: translateY(-2px);
+        }
+
+        .music-controls button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .music-controls button svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-pink-50 to-red-100 min-h-screen flex flex-col justify-center items-center relative">
@@ -345,10 +392,10 @@
     </div>
 
     <!-- Música de fundo -->
-    <audio id="background-music" loop autoplay>
+    <audio id="background-music" loop>
         <!--
             ATENÇÃO, JOAO PEDRO!
-            O arquivo 'musica.mp3' deve estar no mesmo diretório que este arquivo 'index.html'.
+            Os arquivos de música devem estar no mesmo diretório que este arquivo 'index.html'.
         -->
         <source src="musica.mp3" type="audio/mp3">
         Seu navegador não suporta o elemento de áudio.
@@ -452,6 +499,21 @@
         </div>
     </main>
 
+    <!-- Controles de música flutuantes -->
+    <div id="music-controls" class="music-controls">
+        <button id="prev-music-button" title="Música Anterior">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button id="play-pause-music-button" title="Tocar/Pausar Música">
+            <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="hidden"><path d="M6 19h4V5H6zm8-14v14h4V5z"/></svg>
+        </button>
+        <button id="next-music-button" title="Próxima Música">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6h2v12h-2z"/></svg>
+        </button>
+        <span id="current-song-info" class="text-rose-800 font-semibold text-sm hidden sm:block"></span>
+    </div>
+
     <script>
         // Data de início do namoro
         const startDate = new Date('2024-06-14T00:00:00'); // 14 de Junho de 2024
@@ -463,7 +525,7 @@
         // Elementos do quiz da data
         const dateOptionsContainer = document.getElementById('date-options');
         const dateOptions = document.querySelectorAll('#date-options .quiz-option');
-        const checkDatingDateButton = document.getElementById('check-dating-date-answer'); // Renomeado
+        const checkDatingDateButton = document.getElementById('check-dating-date-answer');
         const datingDateFeedback = document.getElementById('dating-date-feedback');
 
         // Elementos do quiz da cor
@@ -475,20 +537,25 @@
         // Elemento da galeria
         const galleryContainer = document.getElementById('gallery-container');
 
-        // Estado do quiz
-        let isDatingDateAnsweredCorrectly = false; // Flag para a data
-        let isColorAnsweredCorrectly = false;     // Flag para a cor
-        let selectedDatingDate = null;            // Para armazenar a data selecionada
-        let selectedColor = null;                 // Para armazenar a cor selecionada
+        // Controles de música
+        const backgroundMusic = document.getElementById('background-music');
+        const playPauseButton = document.getElementById('play-pause-music-button');
+        const prevMusicButton = document.getElementById('prev-music-button');
+        const nextMusicButton = document.getElementById('next-music-button');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const currentSongInfo = document.getElementById('current-song-info');
 
-        const correctDatingDate = "14 de Junho de 2024"; // Data correta
-        const correctColor = "Azul";                     // Sua cor favorita
+        // Estado do quiz
+        let isDatingDateAnsweredCorrectly = false;
+        let isColorAnsweredCorrectly = false;
+        let selectedDatingDate = null;
+        let selectedColor = null;
+
+        const correctDatingDate = "14 de Junho de 2024";
+        const correctColor = "Azul";
 
         // --- DADOS DA GALERIA ---
-        // ATENÇÃO, JOAO PEDRO!
-        // Aqui você vai preencher as informações das suas fotos.
-        // O código agora gera 100 entradas no array, com caminhos de 'Fotos/FotoX/imagem.png'.
-        // Certifique-se de que as imagens existam nesses caminhos!
         const galleryItems = [];
         for (let i = 1; i <= 100; i++) {
             galleryItems.push({
@@ -497,6 +564,70 @@
             });
         }
 
+        // --- PLAYLIST DE MÚSICAS ---
+        // ATENÇÃO, JOAO PEDRO!
+        // Adicione aqui os caminhos para suas músicas.
+        // Certifique-se de que os arquivos de música (ex: musica2.mp3, musica3.mp3)
+        // estejam no mesmo diretório que este arquivo 'index.html'.
+        const playlist = [
+            { src: "musica.mp3", title: "Nossa Canção Favorita" },
+            { src: "musica2.mp3", title: "Momentos Inesquecíveis" },
+            { src: "musica3.mp3", title: "Trilha Sonora do Amor" }
+            // Adicione mais músicas aqui, se desejar:
+            // { src: "caminho/para/sua_musica4.mp3", title: "Título da Música 4" },
+            // { src: "caminho/para/sua_musica5.mp3", title: "Título da Música 5" }
+        ];
+        let currentSongIndex = 0;
+
+        // --- Funções de Música ---
+        function loadSong(index) {
+            if (playlist.length === 0) {
+                console.warn("Playlist vazia, nenhuma música para carregar.");
+                currentSongInfo.textContent = "Nenhuma música na playlist.";
+                return;
+            }
+            const song = playlist[index];
+            backgroundMusic.src = song.src;
+            currentSongInfo.textContent = `Tocando: ${song.title}`;
+            // Preload the song to avoid delays when playing
+            backgroundMusic.load();
+        }
+
+        function playSong() {
+            backgroundMusic.play().then(() => {
+                playIcon.classList.add('hidden');
+                pauseIcon.classList.remove('hidden');
+            }).catch(error => {
+                console.log('Erro ao tentar tocar música:', error);
+                // Pode ser por restrições de autoplay. O usuário terá que interagir.
+            });
+        }
+
+        function pauseSong() {
+            backgroundMusic.pause();
+            playIcon.classList.remove('hidden');
+            pauseIcon.classList.add('hidden');
+        }
+
+        function togglePlayPause() {
+            if (backgroundMusic.paused) {
+                playSong();
+            } else {
+                pauseSong();
+            }
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % playlist.length;
+            loadSong(currentSongIndex);
+            playSong();
+        }
+
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+            loadSong(currentSongIndex);
+            playSong();
+        }
 
         // --- Funções Principais ---
 
@@ -767,11 +898,10 @@
             setInterval(createHeart, 500); // Corações
             setInterval(createSparkle, 150); // Brilhos
 
-            const music = document.getElementById('background-music');
-            music.volume = 0.3;
-            music.play().catch(error => {
-                console.log('Autoplay de música bloqueado:', error);
-            });
+            // Inicia a música e mostra os controles
+            loadSong(currentSongIndex);
+            playSong();
+            document.getElementById('music-controls').classList.remove('hidden'); // Certifica que os controles estão visíveis
         }
 
         function loadQuizState() {
@@ -962,10 +1092,21 @@
             if (!(isDatingDateAnsweredCorrectly && isColorAnsweredCorrectly)) {
                 quizGate.style.display = 'block';
                 mainContentLocked.classList.remove('unlocked');
+                document.getElementById('music-controls').classList.add('hidden'); // Esconde os controles de música
             } else {
                 quizGate.style.display = 'none';
                 mainContentLocked.classList.add('unlocked');
+                loadSong(currentSongIndex); // Carrega a primeira música
+                // Não inicia o play aqui, mas mostra os controles.
+                document.getElementById('music-controls').classList.remove('hidden'); // Mostra os controles de música
             }
+
+            // Adiciona listeners para os botões de música
+            playPauseButton.addEventListener('click', togglePlayPause);
+            prevMusicButton.addEventListener('click', prevSong);
+            nextMusicButton.addEventListener('click', nextSong);
+            // Quando a música termina, toca a próxima automaticamente
+            backgroundMusic.addEventListener('ended', nextSong);
         });
 
         document.addEventListener('DOMContentLoaded', () => {
