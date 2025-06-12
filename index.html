@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Dia dos Namorados, Meu Amor! ❤️</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Nosso Amor: Uma Celebração Infinita ❤️</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Pacifico (para títulos) e Montserrat (para corpo) -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         /* Define a fonte Montserrat para todo o corpo, Pacifico para títulos */
@@ -16,27 +14,30 @@
             padding: 0;
             overflow-x: hidden; /* Evita rolagem horizontal */
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23e91e63"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C15.09 3.81 16.76 3 18.5 3 21.58 3 24 5.42 24 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') 12 12, auto; /* Cursor de coração */
+            background-color: #1a001a; /* Dark background for theme */
+            color: #f0e0f0; /* Light text color */
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             font-family: 'Pacifico', cursive;
+            color: #ff69b4; /* Vibrant pink for headings */
         }
 
-        /* Animação de carregamento */
+        /* Loading animation */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom right, #fce4ec, #ffcdd2); /* Tons de rosa e vermelho */
+            background: linear-gradient(to bottom right, #330033, #660066); /* Darker gradient */
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             z-index: 1000;
             transition: opacity 1s ease-out, visibility 1s ease-out;
-            color: #d81b60; /* Cor do texto */
+            color: #ff69b4; /* Pink text */
         }
 
         .loading-overlay.hidden {
@@ -45,8 +46,8 @@
         }
 
         .spinner {
-            border: 8px solid #f3f3f3; /* Light grey */
-            border-top: 8px solid #e91e63; /* Pink */
+            border: 8px solid #4a004a; /* Dark grey */
+            border-top: 8px solid #ff69b4; /* Pink */
             border-radius: 50%;
             width: 60px;
             height: 60px;
@@ -68,24 +69,24 @@
             100% { transform: scale(1.05); opacity: 0.9; }
         }
 
-        /* Fundo com corações flutuantes */
+        /* Floating hearts background */
         .heart-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom right, #ffebee, #f8bbd0); /* Gradient suave */
+            background: linear-gradient(to bottom right, #1a001a, #330033); /* Dark gradient */
             overflow: hidden;
             z-index: -1;
         }
 
         .heart {
             position: absolute;
-            background-color: #ef9a9a; /* Coração rosa claro */
+            background-color: #8b008b; /* Darker pink heart */
             transform: rotate(-45deg);
             animation: float 10s ease-in-out infinite;
-            opacity: 0; /* Começa invisível */
+            opacity: 0; /* Starts invisible */
             filter: drop-shadow(0 0 5px rgba(255, 100, 100, 0.5));
         }
 
@@ -95,7 +96,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background-color: inherit; /* Herda a cor do coração */
+            background-color: inherit; /* Inherits heart color */
             border-radius: 50%;
         }
 
@@ -107,7 +108,7 @@
         .heart:after {
             top: 0;
             left: 50%;
-            }
+        }
 
         @keyframes float {
             0% { transform: translateY(0) translateX(0) rotate(-45deg); opacity: 0; }
@@ -120,11 +121,11 @@
         /* Sparkle animation */
         .sparkle {
             position: absolute;
-            background-color: white;
+            background-color: #ffcc00; /* Gold sparkle */
             border-radius: 50%;
             opacity: 0;
             animation: sparkle-float 2s ease-out forwards;
-            box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 8px 3px rgba(255, 204, 0, 0.7);
         }
 
         @keyframes sparkle-float {
@@ -133,56 +134,57 @@
             100% { transform: scale(0.5) translateY(-50px); opacity: 0; }
         }
 
-        /* Estilo para vales */
+        /* Voucher styles */
         .voucher-card {
-            background-color: white;
-            border: 3px dashed #f48fb1; /* Borda pontilhada rosa */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra mais suave */
+            background-color: #330033; /* Dark background */
+            border: 3px dashed #ff69b4; /* Pink dashed border */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Softer shadow */
             transition: all 0.4s ease-in-out;
-            border-radius: 20px; /* Mais arredondado */
+            border-radius: 20px; /* More rounded */
             position: relative;
+            color: #f0e0f0; /* Light text */
         }
 
         .voucher-card.used {
             opacity: 0.6;
             filter: grayscale(80%);
-            border-color: #90a4ae; /* Borda cinza para usado */
+            border-color: #555555; /* Grey border for used */
             cursor: not-allowed;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
         .voucher-card.used button {
-            background-color: #90a4ae;
+            background-color: #555555;
             cursor: not-allowed;
         }
 
         .voucher-card:not(.used):hover {
-            transform: translateY(-8px) scale(1.03); /* Movimento mais pronunciado */
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
-            border-color: #e91e63; /* Borda mais vibrante no hover */
+            transform: translateY(-8px) scale(1.03); /* More pronounced movement */
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+            border-color: #ff007f; /* More vibrant border on hover */
         }
 
-        /* Estilo do botão */
+        /* Button style */
         .button-primary {
-            background-color: #e91e63; /* Pink */
+            background-color: #ff69b4; /* Pink */
             color: white;
-            padding: 12px 28px; /* Maior padding */
-            border-radius: 9999px; /* Arredondado */
+            padding: 12px 28px; /* Larger padding */
+            border-radius: 9999px; /* Rounded */
             font-weight: bold;
             transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
         }
 
         .button-primary:hover {
-            background-color: #c2185b; /* Darker pink */
-            transform: translateY(-3px) scale(1.02); /* Movimento mais sutil */
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            background-color: #cc0066; /* Darker pink */
+            transform: translateY(-3px) scale(1.02); /* More subtle movement */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
         }
 
         .button-primary:disabled {
-            background-color: #b0bec5; /* Grey */
+            background-color: #444444; /* Grey */
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
@@ -208,20 +210,19 @@
             100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0; }
         }
 
-
-        /* Estilo para a galeria de fotos */
+        /* Photo gallery style */
         .gallery-item {
             overflow: hidden;
-            border-radius: 20px; /* Mais arredondado */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada */
+            border-radius: 20px; /* More rounded */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
             transition: transform 0.4s ease-in-out;
-            border: 3px solid #ffcdd2; /* Borda rosa suave */
+            border: 3px solid #ff69b4; /* Soft pink border */
         }
 
         .gallery-item:hover {
-            transform: scale(1.08); /* Mais zoom */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            border-color: #f48fb1;
+            transform: scale(1.08); /* More zoom */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border-color: #ff007f;
         }
 
         .gallery-item img {
@@ -232,27 +233,27 @@
         }
 
         .gallery-item:hover img {
-            transform: scale(1.15); /* Mais zoom na imagem */
+            transform: scale(1.15); /* More zoom on image */
         }
 
-        /* Estilo para as seções principais */
+        /* Main section card style */
         .content-section-card {
-            background-color: white;
-            background-opacity: 0.9;
-            border-radius: 25px; /* Bem arredondado */
+            background-color: rgba(30, 0, 30, 0.9); /* Darker background with transparency */
+            border-radius: 25px; /* Very rounded */
             padding: 30px;
-            margin-bottom: 2.5rem; /* Ajuste para espaçamento */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            border: 4px solid #ffccbc; /* Borda mais grossa e suave */
+            margin-bottom: 2.5rem; /* Spacing adjustment */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            border: 4px solid #8b008b; /* Thicker, softer border */
             transition: transform 0.3s ease-in-out;
+            color: #f0e0f0; /* Light text */
         }
 
         .content-section-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
-        /* Estilo para as mensagens personalizadas */
+        /* Custom message styles */
         #custom-message-box {
             animation: fade-in-out 3.5s forwards;
         }
@@ -273,41 +274,42 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Estilos específicos para o quiz */
+        /* Quiz specific styles */
         .quiz-option {
-            background-color: #ffebee; /* Fundo rosa claro para as opções */
-            border: 2px solid #ffcdd2;
+            background-color: #4a004a; /* Darker background for options */
+            border: 2px solid #8b008b;
             padding: 12px 20px;
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
             font-weight: 500;
+            color: #f0e0f0; /* Light text */
         }
 
         .quiz-option:hover:not(.selected):not(.disabled) {
-            background-color: #f8bbd0;
+            background-color: #660066;
             transform: scale(1.02);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .quiz-option.selected {
-            background-color: #e91e63; /* Rosa vibrante quando selecionado */
+            background-color: #ff69b4; /* Vibrant pink when selected */
             color: white;
-            border-color: #c2185b;
+            border-color: #cc0066;
             transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
         .quiz-option.correct {
-            background-color: #4CAF50; /* Verde para correto */
+            background-color: #28a745; /* Green for correct */
             color: white;
-            border-color: #388E3C;
+            border-color: #1e7e34;
         }
 
         .quiz-option.incorrect {
-            background-color: #F44336; /* Vermelho para incorreto */
+            background-color: #dc3545; /* Red for incorrect */
             color: white;
-            border-color: #D32F2F;
+            border-color: #bd2130;
         }
 
         .quiz-option.disabled {
@@ -315,24 +317,24 @@
             cursor: not-allowed;
         }
 
-        /* Esconde o conteúdo principal por padrão */
+        /* Hides main content by default */
         #main-content-locked {
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
             transition: opacity 1.5s ease-out, visibility 1.5s ease-out, transform 1.5s ease-out;
-            height: 0; /* Começa com altura 0 para não ocupar espaço */
-            overflow: hidden; /* Garante que o conteúdo não vaze */
+            height: 0; /* Starts with height 0 to not take up space */
+            overflow: hidden; /* Ensures content doesn't overflow */
         }
 
         #main-content-locked.unlocked {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
-            height: auto; /* Retorna à altura normal */
+            height: auto; /* Returns to normal height */
         }
 
-        /* Estilos para os controles de música */
+        /* Music controls styles */
         .music-controls {
             display: flex;
             justify-content: center;
@@ -340,37 +342,37 @@
             gap: 1rem;
             margin-top: 1.5rem;
             padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(30, 0, 30, 0.8); /* Dark background with transparency */
             border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: fixed; /* Fixa na tela */
-            bottom: 20px; /* A 20px da parte inferior */
-            left: 50%; /* Centraliza horizontalmente */
-            transform: translateX(-50%); /* Ajuste para centralizar */
-            z-index: 500; /* Acima de outros elementos, mas abaixo do overlay */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: fixed; /* Fixed on screen */
+            bottom: 20px; /* 20px from bottom */
+            left: 50%; /* Horizontally centered */
+            transform: translateX(-50%); /* Adjustment to center */
+            z-index: 500; /* Above other elements, but below overlay */
         }
 
         .music-controls button {
-            background-color: #e91e63;
+            background-color: #ff69b4;
             color: white;
             padding: 0.75rem 1.25rem;
             border-radius: 10px;
             font-weight: bold;
             transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
         .music-controls button:hover {
-            background-color: #c2185b;
+            background-color: #cc0066;
             transform: translateY(-2px);
         }
 
         .music-controls button:active {
             transform: translateY(0);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         .music-controls button svg {
@@ -380,38 +382,29 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-pink-50 to-red-100 min-h-screen flex flex-col justify-center items-center relative">
+<body class="bg-gradient-to-br from-purple-900 to-indigo-900 min-h-screen flex flex-col justify-center items-center relative">
 
-    <!-- Fundo com corações flutuantes -->
     <div class="heart-background"></div>
 
-    <!-- Animação de carregamento -->
     <div id="loading-overlay" class="loading-overlay">
         <div class="spinner"></div>
-        <p class="text-3xl font-semibold loading-text">Carregando nosso amor...</p>
+        <p class="text-3xl font-semibold loading-text">Desvendando os segredos do nosso amor...</p>
     </div>
 
-    <!-- Música de fundo -->
     <audio id="background-music" loop>
-        <!--
-            ATENÇÃO, JOAO PEDRO!
-            Os arquivos de música devem estar no mesmo diretório que este arquivo 'index.html'.
-        -->
         <source src="musica.mp3" type="audio/mp3">
         Seu navegador não suporta o elemento de áudio.
     </audio>
 
     <main class="container mx-auto px-4 py-8 text-center relative z-10 max-w-4xl w-full">
-        <!-- Seção de Perguntas Especiais (o 'portão' do site) -->
         <section id="quiz-gate" class="content-section-card animate-fade-in-down">
-            <h2 class="text-4xl font-semibold text-rose-700 mb-6 drop-shadow-md">Um Quiz do Nosso Amor! 😉</h2>
-            <p class="text-xl text-rose-600 mb-8 max-w-2xl mx-auto">
-                Para desvendar os segredos do nosso amor, responda a estas perguntas especiais. ✨
+            <h2 class="text-4xl font-semibold mb-6 drop-shadow-md">Um Desafio do Nosso Coração! 😉</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Antes de mergulharmos em nossas memórias, teste seu conhecimento sobre nós! ✨
             </p>
 
-            <!-- Pergunta 1: Data de Namoro -->
-            <div class="mb-8 p-6 bg-rose-50 rounded-xl border border-rose-200">
-                <p class="text-2xl text-rose-700 font-medium mb-4">Qual é o dia que marcou o início da nossa linda história?</p>
+            <div class="mb-8 p-6 bg-purple-900 rounded-xl border border-purple-700">
+                <p class="text-2xl font-medium mb-4">Qual é o dia mágico que iniciamos nossa jornada juntos?</p>
                 <div id="date-options" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md mx-auto mb-6">
                     <div class="quiz-option" data-date="14 de Julho de 2023">14 de Julho de 2023</div>
                     <div class="quiz-option" data-date="14 de Junho de 2024">14 de Junho de 2024</div>
@@ -419,14 +412,13 @@
                     <div class="quiz-option" data-date="01 de Janeiro de 2024">01 de Janeiro de 2024</div>
                 </div>
                 <button id="check-dating-date-answer" class="button-primary px-8 py-3 text-lg">
-                    Verificar Data
+                    Confirmar Data
                 </button>
                 <p id="dating-date-feedback" class="mt-4 text-lg font-semibold"></p>
             </div>
 
-            <!-- Pergunta 2: Cor Favorita -->
-            <div class="p-6 bg-rose-50 rounded-xl border border-rose-200">
-                <p class="text-2xl text-rose-700 font-medium mb-4">Qual é a minha cor favorita (a que faz meu coração sorrir mais)?</p>
+            <div class="p-6 bg-purple-900 rounded-xl border border-purple-700">
+                <p class="text-2xl font-medium mb-4">Qual é a cor que mais representa a alegria no meu mundo?</p>
                 <div id="color-options" class="grid grid-cols-2 gap-4 max-w-md mx-auto mb-6">
                     <div class="quiz-option" data-color="Azul">Azul</div>
                     <div class="quiz-option" data-color="Rosa">Rosa</div>
@@ -434,72 +426,64 @@
                     <div class="quiz-option" data-color="Amarelo">Amarelo</div>
                 </div>
                 <button id="check-color-answer" class="button-primary px-8 py-3 text-lg">
-                    Verificar Resposta
+                    Revelar Resposta
                 </button>
                 <p id="color-feedback" class="mt-4 text-lg font-semibold"></p>
             </div>
         </section>
 
-        <!-- Conteúdo Principal do Site (inicialmente bloqueado) -->
         <div id="main-content-locked">
-            <!-- Título principal -->
-            <h1 class="text-6xl md:text-7xl font-bold text-rose-700 mb-8 drop-shadow-lg animate-fade-in-down">
-                Feliz Dia dos Namorados, Meu Amor!
+            <h1 class="text-6xl md:text-7xl font-bold mb-8 drop-shadow-lg animate-fade-in-down">
+                Feliz Dia dos Namorados, Minha Vida!
             </h1>
 
-            <!-- Mensagem principal -->
             <div class="content-section-card max-w-2xl mx-auto animate-fade-in">
-                <p class="text-xl md:text-2xl text-rose-600 leading-relaxed">
-                    Desde que nossos olhares se cruzaram, meu mundo se transformou em um jardim de cores vibrantes. Cada riso, cada abraço, cada instante ao seu lado é o meu presente mais precioso. Este cantinho especial na web é um espelho do amor que transborda em mim por você!
+                <p class="text-xl md:text-2xl leading-relaxed text-fuchsia-200">
+                    Desde o dia em que nossos caminhos se cruzaram, cada momento se tornou uma melodia. Seu sorriso é a minha canção favorita, seu abraço é o meu porto seguro, e cada "eu te amo" vindo de você é a mais pura verdade. Este pequeno universo online é uma celebração do nosso amor, das nossas aventuras e de todos os sonhos que ainda vamos realizar juntos!
                 </p>
             </div>
 
-            <!-- Contador de tempo -->
             <div class="content-section-card animate-fade-in-up">
-                <h2 class="text-4xl font-semibold text-rose-700 mb-4">Nosso Amor Celebra:</h2>
-                <div id="countdown" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-rose-900 font-bold text-3xl md:text-4xl">
-                    <div><span id="years">0</span> <span class="text-xl block">Anos</span></div>
-                    <div><span id="months">0</span> <span class="text-xl block">Meses</span></div>
-                    <div><span id="days">0</span> <span class="text-xl block">Dias</span></div>
-                    <div><span id="hours">0</span> <span class="text-xl block">Horas</span></div>
-                    <div><span id="minutes">0</span> <span class="text-xl block">Minutos</span></div>
-                    <div><span id="seconds">0</span> <span class="text-xl block">Segundos</span></div>
+                <h2 class="text-4xl font-semibold mb-4">Nosso Amor Floresce Há:</h2>
+                <div id="countdown" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-fuchsia-300 font-bold text-3xl md:text-4xl">
+                    <div><span id="years">0</span> <span class="text-xl block text-fuchsia-400">Anos</span></div>
+                    <div><span id="months">0</span> <span class="text-xl block text-fuchsia-400">Meses</span></div>
+                    <div><span id="days">0</span> <span class="text-xl block text-fuchsia-400">Dias</span></div>
+                    <div><span id="hours">0</span> <span class="text-xl block text-fuchsia-400">Horas</span></div>
+                    <div><span id="minutes">0</span> <span class="text-xl block text-fuchsia-400">Minutos</span></div>
+                    <div><span id="seconds">0</span> <span class="text-xl block text-fuchsia-400">Segundos</span></div>
                 </div>
-                <p class="text-lg text-gray-600 mt-6">Desde 14 de Junho de 2024</p>
+                <p class="text-lg text-fuchsia-400 mt-6">Desde o nosso inesquecível 14 de Junho de 2024</p>
             </div>
 
-            <!-- Galeria de Fotos -->
             <section class="content-section-card animate-fade-in">
-                <h2 class="text-4xl font-semibold text-rose-700 mb-6 drop-shadow-md">Nossos Momentos Especiais</h2>
+                <h2 class="text-4xl font-semibold mb-6 drop-shadow-md">Nossa Galeria de Corações e Risadas</h2>
+                <p class="text-lg text-fuchsia-200 mb-8 max-w-2xl mx-auto">
+                    Cada foto um pedacinho da nossa história, cada sorriso um eco da nossa felicidade. Deslize e reviva nossos momentos mais preciosos!
+                </p>
                 <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- As imagens e descrições da galeria serão inseridas aqui pelo JavaScript -->
-                </div>
+                    </div>
             </section>
 
-            <!-- Seção de Vales de Amor -->
             <section class="content-section-card animate-fade-in">
-                <h2 class="text-4xl font-semibold text-rose-700 mb-6 drop-shadow-md">Seus Vales de Amor!</h2>
-                <p class="text-lg text-rose-600 mb-8 max-w-2xl mx-auto">
-                    Aqui estão alguns vales especiais, feitos com carinho, para você usar quando quiser. Mas lembre-se:
-                    cada um pode ser resgatado **apenas uma vez**!
+                <h2 class="text-4xl font-semibold mb-6 drop-shadow-md">Seus Vales do Amor Infinito!</h2>
+                <p class="text-lg text-fuchsia-200 mb-8 max-w-2xl mx-auto">
+                    Prepare-se para surpresas! Estes vales foram feitos com todo o meu carinho, para você resgatar e tornar nossos dias ainda mais especiais. Escolha com sabedoria, pois cada um é único!
                 </p>
                 <div id="voucher-list" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Vales serão injetados aqui pelo JavaScript -->
-                </div>
+                    </div>
             </section>
 
-            <!-- Mensagem Final -->
             <section class="content-section-card animate-fade-in">
-                <h2 class="text-3xl font-semibold text-rose-700 mb-4">Minha eterna namorada e o amor da minha vida...</h2>
-                <p class="text-lg text-rose-600 leading-relaxed">
-                    Você é a melodia que embala meus dias, a luz que dissipa qualquer escuridão e a inspiração que me impulsiona a ser a melhor versão de mim. Cada sorriso seu é um pôr do sol em minha alma, e cada toque, a prova de um carinho sem fim. Obrigada por cada aventura, por cada momento de cumplicidade e por encher minha vida com tanto amor. Mal posso esperar para escrever os próximos capítulos da nossa história! Eu te amo mais do que as palavras podem expressar, a cada batida do meu coração.
+                <h2 class="text-3xl font-semibold mb-4">Para a Mulher dos Meus Sonhos...</h2>
+                <p class="text-lg leading-relaxed text-fuchsia-200">
+                    Você é a essência da minha alegria, a força nos meus dias, a paz nas minhas noites. Com você, cada desafio se torna uma aventura e cada vitória é duplamente celebrada. Seu amor me inspira, me transforma e me completa de maneiras que eu jamais imaginei. Que nossa jornada continue sendo regada a risos, cumplicidade e um amor que só cresce. Eu te amo mais do que as estrelas no céu, a cada batida do meu coração. Obrigado por ser o meu tudo.
                 </p>
-                <p class="text-xl font-bold text-rose-800 mt-6">Com todo meu amor, Joao Pedro G. Jordão</p>
+                <p class="text-xl font-bold text-fuchsia-400 mt-6">Com todo o meu amor e admiração, Joao Pedro G. Jordão</p>
             </section>
         </div>
     </main>
 
-    <!-- Controles de música flutuantes -->
     <div id="music-controls" class="music-controls">
         <button id="prev-music-button" title="Música Anterior">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
@@ -511,33 +495,33 @@
         <button id="next-music-button" title="Próxima Música">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6h2v12h-2z"/></svg>
         </button>
-        <span id="current-song-info" class="text-rose-800 font-semibold text-sm hidden sm:block"></span>
+        <span id="current-song-info" class="text-fuchsia-300 font-semibold text-sm hidden sm:block"></span>
     </div>
 
     <script>
-        // Data de início do namoro
-        const startDate = new Date('2024-06-14T00:00:00'); // 14 de Junho de 2024
+        // Start date of the relationship
+        const startDate = new Date('2024-06-14T00:00:00'); // June 14, 2024
 
-        // Elementos principais
+        // Main elements
         const quizGate = document.getElementById('quiz-gate');
         const mainContentLocked = document.getElementById('main-content-locked');
         
-        // Elementos do quiz da data
+        // Date quiz elements
         const dateOptionsContainer = document.getElementById('date-options');
         const dateOptions = document.querySelectorAll('#date-options .quiz-option');
         const checkDatingDateButton = document.getElementById('check-dating-date-answer');
         const datingDateFeedback = document.getElementById('dating-date-feedback');
 
-        // Elementos do quiz da cor
+        // Color quiz elements
         const colorOptionsContainer = document.getElementById('color-options');
         const colorOptions = document.querySelectorAll('#color-options .quiz-option');
         const checkColorAnswerButton = document.getElementById('check-color-answer');
         const colorFeedback = document.getElementById('color-feedback');
 
-        // Elemento da galeria
+        // Gallery element
         const galleryContainer = document.getElementById('gallery-container');
 
-        // Controles de música
+        // Music controls
         const backgroundMusic = document.getElementById('background-music');
         const playPauseButton = document.getElementById('play-pause-music-button');
         const prevMusicButton = document.getElementById('prev-music-button');
@@ -546,7 +530,7 @@
         const pauseIcon = document.getElementById('pause-icon');
         const currentSongInfo = document.getElementById('current-song-info');
 
-        // Estado do quiz
+        // Quiz state
         let isDatingDateAnsweredCorrectly = false;
         let isColorAnsweredCorrectly = false;
         let selectedDatingDate = null;
@@ -555,7 +539,7 @@
         const correctDatingDate = "14 de Junho de 2024";
         const correctColor = "Azul";
 
-        // --- DADOS DA GALERIA ---
+        // --- GALLERY DATA ---
         const galleryItems = [];
         for (let i = 1; i <= 100; i++) {
             galleryItems.push({
@@ -564,25 +548,25 @@
             });
         }
 
-        // --- PLAYLIST DE MÚSICAS ---
-        // ATENÇÃO, JOAO PEDRO!
-        // Adicione aqui os caminhos para suas músicas.
-        // Certifique-se de que os arquivos de música (ex: musica2.mp3, musica3.mp3)
-        // estejam no mesmo diretório que este arquivo 'index.html'.
+        // --- MUSIC PLAYLIST ---
+        // ATTENTION, JOAO PEDRO!
+        // Add paths to your music here.
+        // Make sure music files (e.g., musica2.mp3, musica3.mp3)
+        // are in the same directory as this 'index.html' file.
         const playlist = [
             { src: "musica.mp3", title: "VIDAAAAAA" },
             { src: "musica2.mp3", title: "Mohhhhhh" },
             { src: "musica4.mp3", title: "VIDAAAAAAAAAAA" }
-            // Adicione mais músicas aqui, se desejar:
-            // { src: "caminho/para/sua_musica4.mp3", title: "Título da Música 4" },
-            // { src: "caminho/para/sua_musica5.mp3", title: "Título da Música 5" }
+            // Add more songs here if desired:
+            // { src: "path/to/your_music4.mp3", title: "Song Title 4" },
+            // { src: "path/to/your_music5.mp3", title: "Song Title 5" }
         ];
         let currentSongIndex = 0;
 
-        // --- Funções de Música ---
+        // --- Music Functions ---
         function loadSong(index) {
             if (playlist.length === 0) {
-                console.warn("Playlist vazia, nenhuma música para carregar.");
+                console.warn("Empty playlist, no music to load.");
                 currentSongInfo.textContent = "Nenhuma música na playlist.";
                 return;
             }
@@ -599,7 +583,7 @@
                 pauseIcon.classList.remove('hidden');
             }).catch(error => {
                 console.log('Erro ao tentar tocar música:', error);
-                // Pode ser por restrições de autoplay. O usuário terá que interagir.
+                // Could be due to autoplay restrictions. User will have to interact.
             });
         }
 
@@ -629,12 +613,12 @@
             playSong();
         }
 
-        // --- Funções Principais ---
+        // --- Core Functions ---
 
-        // Função para atualizar o contador
+        // Function to update the countdown
         function updateCountdown() {
             const now = new Date();
-            const diff = now.getTime() - startDate.getTime(); // Diferença em milissegundos
+            const diff = now.getTime() - startDate.getTime(); // Difference in milliseconds
 
             const seconds = Math.floor(diff / 1000) % 60;
             const minutes = Math.floor(diff / (1000 * 60)) % 60;
@@ -653,7 +637,7 @@
             document.getElementById('seconds').textContent = seconds;
         }
 
-        // Array de vales (JSON)
+        // Vouchers array (JSON)
         let vouchers = [
             { id: 1, description: "Um jantar romântico feito por mim", used: false },
             { id: 2, description: "Uma massagem relaxante de 30 minutos", used: false },
@@ -687,16 +671,16 @@
             { id: 30, description: "Um vale voce escolhe", used: false }
         ];
 
-        // Carregar estado dos vales do localStorage
+        // Load voucher state from localStorage
         function loadVouchers() {
             const storedVouchers = localStorage.getItem('valentinesVouchers');
             if (storedVouchers) {
-                // Ao carregar, precisamos garantir que novos vales sejam adicionados se o array armazenado for menor
+                // When loading, ensure new vouchers are added if the stored array is smaller
                 const loaded = JSON.parse(storedVouchers);
-                // Mapeia os vales carregados para um objeto para fácil acesso por ID
+                // Map loaded vouchers to an object for easy ID access
                 const loadedMap = new Map(loaded.map(v => [v.id, v]));
 
-                // Cria um novo array de vales, usando o estado armazenado se existir, caso contrário, usa o estado padrão
+                // Create a new voucher array, using the stored state if it exists, otherwise use the default state
                 vouchers = vouchers.map(defaultVoucher => {
                     if (loadedMap.has(defaultVoucher.id)) {
                         return loadedMap.get(defaultVoucher.id);
@@ -706,26 +690,26 @@
             }
         }
 
-        // Salvar estado dos vales no localStorage
+        // Save voucher state to localStorage
         function saveVouchers() {
             localStorage.setItem('valentinesVouchers', JSON.stringify(vouchers));
         }
 
-        // Renderizar vales na página
+        // Render vouchers on the page
         function renderVouchers() {
             const voucherListDiv = document.getElementById('voucher-list');
             voucherListDiv.innerHTML = '';
 
             vouchers.forEach(voucher => {
                 const voucherCard = document.createElement('div');
-                voucherCard.className = `voucher-card p-6 rounded-2xl flex flex-col justify-between items-center text-rose-800 transition-all duration-300 ${voucher.used ? 'used' : ''}`;
+                voucherCard.className = `voucher-card p-6 rounded-2xl flex flex-col justify-between items-center text-fuchsia-100 transition-all duration-300 ${voucher.used ? 'used' : ''}`;
 
                 voucherCard.innerHTML = `
                     <p class="text-lg font-medium text-center mb-4">${voucher.description}</p>
                     <button data-id="${voucher.id}" class="button-primary text-sm px-6 py-3 rounded-full shadow-md">
                         ${voucher.used ? 'Vale Resgatado!' : 'Resgatar Vale'}
                     </button>
-                    ${voucher.used ? '<span class="absolute top-2 right-2 text-rose-500 font-bold text-xs bg-rose-100 px-2 py-1 rounded-full opacity-80">USADO</span>' : ''}
+                    ${voucher.used ? '<span class="absolute top-2 right-2 text-fuchsia-400 font-bold text-xs bg-purple-800 px-2 py-1 rounded-full opacity-80">USADO</span>' : ''}
                 `;
 
                 const button = voucherCard.querySelector('button');
@@ -742,7 +726,7 @@
             });
         }
 
-        // Função para usar um vale
+        // Function to use a voucher
         function useVoucher(id) {
             const voucherIndex = vouchers.findIndex(v => v.id === id);
             if (voucherIndex !== -1 && !vouchers[voucherIndex].used) {
@@ -755,35 +739,35 @@
             }
         }
 
-        // Renderizar galeria de fotos
+        // Render photo gallery
         function renderGallery() {
             const galleryContainer = document.getElementById('gallery-container');
-            galleryContainer.innerHTML = ''; // Limpa a galeria existente
+            galleryContainer.innerHTML = ''; // Clears existing gallery
 
             galleryItems.forEach(item => {
-                const img = new Image(); // Cria um objeto Image em memória
+                const img = new Image(); // Creates an Image object in memory
                 img.src = item.imageUrl;
 
                 img.onload = () => {
-                    // Se a imagem carregar, cria o elemento da galeria e o adiciona
+                    // If image loads, create gallery element and add it
                     const galleryItemDiv = document.createElement('div');
                     galleryItemDiv.className = 'gallery-item';
                     galleryItemDiv.innerHTML = `
                         <img src="${item.imageUrl}" alt="${item.description}" class="w-full h-auto">
-                        <p class="text-sm text-gray-700 p-4 text-center">${item.description}</p>
+                        <p class="text-sm text-fuchsia-200 p-4 text-center">${item.description}</p>
                     `;
                     galleryContainer.appendChild(galleryItemDiv);
                 };
 
                 img.onerror = () => {
-                    // Se a imagem NÃO carregar, simplesmente não faz nada.
-                    // Isso impede que o 'gallery-item' seja adicionado.
+                    // If image does NOT load, simply do nothing.
+                    // This prevents 'gallery-item' from being added.
                     console.warn(`Erro ao carregar imagem: ${item.imageUrl}. Não será exibida na galeria.`);
                 };
             });
         }
 
-        // Animação de corações flutuantes
+        // Floating hearts animation
         function createHeart() {
             const heartBackground = document.querySelector('.heart-background');
             const heart = document.createElement('div');
@@ -796,7 +780,7 @@
             heart.style.animationDelay = `${Math.random() * 2}s`;
             heart.style.setProperty('--x-offset', `${(Math.random() - 0.5) * 200}px`);
 
-            const colors = ['#ef9a9a', '#f48fb1', '#ffcdd2', '#e91e63'];
+            const colors = ['#ff69b4', '#8b008b', '#ff007f', '#cc0066'];
             heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 
             heartBackground.appendChild(heart);
@@ -806,7 +790,7 @@
             });
         }
 
-        // Animação de brilhos (sparkles)
+        // Sparkle animation
         function createSparkle() {
             const mainContent = document.querySelector('main');
             const sparkle = document.createElement('div');
@@ -823,7 +807,7 @@
             });
         }
 
-        // --- Funções para Mensagens Personalizadas (no lugar de alert/confirm) ---
+        // --- Custom Message Functions (in place of alert/confirm) ---
 
         let currentMessageTimeout;
 
@@ -839,13 +823,13 @@
             messageBox.className = `fixed top-5 left-1/2 -translate-x-1/2 p-4 rounded-lg shadow-lg z-50 opacity-0 transform-gpu translate-y-[-20px]`;
 
             if (type === 'success') {
-                messageBox.classList.add('bg-green-500', 'text-white');
+                messageBox.classList.add('bg-green-600', 'text-white');
             } else if (type === 'info') {
-                messageBox.classList.add('bg-blue-500', 'text-white');
+                messageBox.classList.add('bg-blue-600', 'text-white');
             } else if (type === 'error') {
-                messageBox.classList.add('bg-red-500', 'text-white');
+                messageBox.classList.add('bg-red-600', 'text-white');
             } else {
-                messageBox.classList.add('bg-gray-800', 'text-white');
+                messageBox.classList.add('bg-gray-700', 'text-white');
             }
 
             messageBox.textContent = message;
@@ -858,11 +842,11 @@
 
             const confirmBox = document.createElement('div');
             confirmBox.id = 'custom-confirm-box';
-            confirmBox.className = `fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50`;
+            confirmBox.className = `fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50`;
 
             confirmBox.innerHTML = `
-                <div class="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full text-center">
-                    <p class="text-lg text-gray-800 mb-6">${message}</p>
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl max-w-sm w-full text-center text-white">
+                    <p class="text-lg mb-6">${message}</p>
                     <div class="flex justify-around">
                         <button id="confirm-yes" class="button-primary bg-green-600 hover:bg-green-700 px-6 py-2">Sim</button>
                         <button id="confirm-no" class="button-primary bg-red-600 hover:bg-red-700 px-6 py-2">Não</button>
@@ -881,7 +865,7 @@
             });
         }
 
-        // --- Lógica do Quiz e Desbloqueio ---
+        // --- Quiz Logic and Unlock ---
 
         function checkUnlockConditions() {
             if (isDatingDateAnsweredCorrectly && isColorAnsweredCorrectly) {
@@ -890,30 +874,30 @@
         }
 
         function unlockWebsite() {
-            quizGate.style.display = 'none'; // Esconde a seção do quiz
-            mainContentLocked.classList.add('unlocked'); // Mostra o conteúdo principal com transição
+            quizGate.style.display = 'none'; // Hides quiz section
+            mainContentLocked.classList.add('unlocked'); // Shows main content with transition
 
-            // Inicia animações e música após o desbloqueio
-            setInterval(updateCountdown, 1000); // Inicia o contador
-            setInterval(createHeart, 500); // Corações
-            setInterval(createSparkle, 150); // Brilhos
+            // Starts animations and music after unlock
+            setInterval(updateCountdown, 1000); // Starts countdown
+            setInterval(createHeart, 500); // Hearts
+            setInterval(createSparkle, 150); // Sparkles
 
-            // Inicia a música e mostra os controles
+            // Starts music and shows controls
             loadSong(currentSongIndex);
             playSong();
-            document.getElementById('music-controls').classList.remove('hidden'); // Certifica que os controles estão visíveis
+            document.getElementById('music-controls').classList.remove('hidden'); // Ensures controls are visible
         }
 
         function loadQuizState() {
-            // Carrega estado da pergunta de data
+            // Load dating date question state
             const storedDatingDateAnswered = localStorage.getItem('datingDateAnswered');
             const storedSelectedDatingDate = localStorage.getItem('selectedDatingDate');
 
-            if (storedDatingDateAnswered === 'true' && storedSelectedDatingDate === correctDatingDate) { // Só considera correto se acertou
+            if (storedDatingDateAnswered === 'true' && storedSelectedDatingDate === correctDatingDate) { // Only considers correct if answered correctly
                 isDatingDateAnsweredCorrectly = true;
                 checkDatingDateButton.disabled = true;
                 datingDateFeedback.textContent = '🥳 Resposta correta! Você se lembra de tudo!';
-                datingDateFeedback.classList.add('text-green-600');
+                datingDateFeedback.classList.add('text-green-400');
                 dateOptions.forEach(option => {
                     option.classList.add('disabled');
                     if (option.dataset.date === correctDatingDate) {
@@ -921,7 +905,7 @@
                     }
                 });
             } else {
-                // Se errou ou não respondeu, permite novas tentativas
+                // If incorrect or not answered, allows new attempts
                 isDatingDateAnsweredCorrectly = false;
                 checkDatingDateButton.disabled = false;
                 dateOptions.forEach(option => {
@@ -929,22 +913,22 @@
                 });
                 datingDateFeedback.textContent = '';
                 if (storedSelectedDatingDate && storedSelectedDatingDate !== correctDatingDate) {
-                    // Se ela tentou antes e errou, mostra um lembrete
+                    // If she tried before and was wrong, show a reminder
                     datingDateFeedback.textContent = `Você tentou '${storedSelectedDatingDate}' da última vez. Tente novamente! 😉`;
-                    datingDateFeedback.classList.add('text-rose-600');
+                    datingDateFeedback.classList.add('text-fuchsia-400');
                 }
             }
 
 
-            // Carrega estado da pergunta de cor
+            // Load color question state
             const storedColorAnswered = localStorage.getItem('colorAnswered');
             const storedSelectedColor = localStorage.getItem('selectedColor');
 
-            if (storedColorAnswered === 'true' && storedSelectedColor === correctColor) { // Só considera correto se acertou
+            if (storedColorAnswered === 'true' && storedSelectedColor === correctColor) { // Only considers correct if answered correctly
                 isColorAnsweredCorrectly = true;
                 checkColorAnswerButton.disabled = true;
                 colorFeedback.textContent = '🥳 Resposta correta! Você é incrível!';
-                colorFeedback.classList.add('text-green-600');
+                colorFeedback.classList.add('text-green-400');
                 colorOptions.forEach(option => {
                     option.classList.add('disabled');
                     if (option.dataset.color === correctColor) {
@@ -952,7 +936,7 @@
                     }
                 });
             } else {
-                // Se errou ou não respondeu, permite novas tentativas
+                // If incorrect or not answered, allows new attempts
                 isColorAnsweredCorrectly = false;
                 checkColorAnswerButton.disabled = false;
                 colorOptions.forEach(option => {
@@ -960,9 +944,9 @@
                 });
                 colorFeedback.textContent = '';
                 if (storedSelectedColor && storedSelectedColor !== correctColor) {
-                    // Se ela tentou antes e errou, mostra um lembrete
+                    // If she tried before and was wrong, show a reminder
                     colorFeedback.textContent = `Você tentou '${storedSelectedColor}' da última vez. Tente novamente! 😉`;
-                    colorFeedback.classList.add('text-rose-600');
+                    colorFeedback.classList.add('text-fuchsia-400');
                 }
             }
 
@@ -970,50 +954,50 @@
         }
 
         function setupQuizListeners() {
-            // Listener para seleção de data
+            // Listener for date selection
             dateOptions.forEach(option => {
                 option.addEventListener('click', function() {
-                    // Só permite selecionar se a resposta ainda não foi acertada
+                    // Only allows selection if the answer hasn't been corrected yet
                     if (!isDatingDateAnsweredCorrectly) {
                         dateOptions.forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
                         this.classList.add('selected');
                         selectedDatingDate = this.dataset.date;
-                        datingDateFeedback.textContent = ''; // Limpa feedback anterior
+                        datingDateFeedback.textContent = ''; // Clears previous feedback
                     }
                 });
             });
 
-            // Listener para verificar a resposta da data
+            // Listener to check date answer
             checkDatingDateButton.addEventListener('click', function() {
-                if (isDatingDateAnsweredCorrectly) { // Se já acertou, não faz nada
+                if (isDatingDateAnsweredCorrectly) { // If already correct, do nothing
                     showMessage('Você já respondeu essa pergunta corretamente! 😊', 'info');
                     return;
                 }
                 if (selectedDatingDate) {
-                    // Remove classes de feedback de todas as opções antes de verificar
+                    // Remove feedback classes from all options before checking
                     dateOptions.forEach(option => option.classList.remove('correct', 'incorrect'));
 
                     if (selectedDatingDate === correctDatingDate) {
-                        localStorage.setItem('datingDateAnswered', 'true'); // Salva como acertado
-                        localStorage.setItem('selectedDatingDate', selectedDatingDate); // Salva a resposta correta
+                        localStorage.setItem('datingDateAnswered', 'true'); // Saves as correct
+                        localStorage.setItem('selectedDatingDate', selectedDatingDate); // Saves the correct answer
                         isDatingDateAnsweredCorrectly = true;
-                        this.disabled = true; // Desabilita o botão
+                        this.disabled = true; // Disables the button
 
                         document.querySelector(`.quiz-option[data-date="${correctDatingDate}"]`).classList.add('correct');
                         datingDateFeedback.textContent = '🥳 Resposta correta! Você se lembra de tudo!';
-                        datingDateFeedback.classList.remove('text-red-600', 'text-rose-600');
-                        datingDateFeedback.classList.add('text-green-600');
+                        datingDateFeedback.classList.remove('text-red-600', 'text-fuchsia-400');
+                        datingDateFeedback.classList.add('text-green-400');
                         showMessage('Data correta! Que memória incrível! ❤️', 'success');
 
-                        dateOptions.forEach(option => option.classList.add('disabled')); // Desabilita todas as opções
+                        dateOptions.forEach(option => option.classList.add('disabled')); // Disables all options
                         
                     } else {
-                        // Se errou, apenas mostra feedback, não salva como "respondido"
-                        selectedDatingDate = null; // Reseta a seleção para a próxima tentativa
-                        dateOptions.forEach(opt => opt.classList.remove('selected')); // Remove a seleção incorreta
+                        // If incorrect, just show feedback, don't save as "answered"
+                        selectedDatingDate = null; // Resets selection for next attempt
+                        dateOptions.forEach(opt => opt.classList.remove('selected')); // Removes incorrect selection
                         datingDateFeedback.textContent = `Ops! A data selecionada não é a correta. Tente novamente! 😉`;
-                        datingDateFeedback.classList.remove('text-green-600');
-                        datingDateFeedback.classList.add('text-red-600');
+                        datingDateFeedback.classList.remove('text-green-400');
+                        datingDateFeedback.classList.add('text-red-400');
                         showMessage(`Não foi dessa vez. Tente novamente! 😉`, 'info');
                     }
                     checkUnlockConditions();
@@ -1022,50 +1006,50 @@
                 }
             });
 
-            // Listener para seleção de cor
+            // Listener for color selection
             colorOptions.forEach(option => {
                 option.addEventListener('click', function() {
-                    // Só permite selecionar se a resposta ainda não foi acertada
+                    // Only allows selection if the answer hasn't been corrected yet
                     if (!isColorAnsweredCorrectly) {
                         colorOptions.forEach(opt => opt.classList.remove('selected', 'correct', 'incorrect'));
                         this.classList.add('selected');
                         selectedColor = this.dataset.color;
-                        colorFeedback.textContent = ''; // Limpa feedback anterior
+                        colorFeedback.textContent = ''; // Clears previous feedback
                     }
                 });
             });
 
-            // Listener para verificar a resposta da cor
+            // Listener to check color answer
             checkColorAnswerButton.addEventListener('click', function() {
-                if (isColorAnsweredCorrectly) { // Se já acertou, não faz nada
+                if (isColorAnsweredCorrectly) { // If already correct, do nothing
                     showMessage('Você já respondeu essa pergunta corretamente! 😊', 'info');
                     return;
                 }
                 if (selectedColor) {
-                    // Remove classes de feedback de todas as opções antes de verificar
+                    // Remove feedback classes from all options before checking
                     colorOptions.forEach(option => option.classList.remove('correct', 'incorrect'));
 
                     if (selectedColor === correctColor) {
-                        localStorage.setItem('colorAnswered', 'true'); // Salva como acertado
-                        localStorage.setItem('selectedColor', selectedColor); // Salva a resposta correta
+                        localStorage.setItem('colorAnswered', 'true'); // Saves as correct
+                        localStorage.setItem('selectedColor', selectedColor); // Saves the correct answer
                         isColorAnsweredCorrectly = true;
-                        this.disabled = true; // Desabilita o botão
+                        this.disabled = true; // Disables the button
 
                         document.querySelector(`.quiz-option[data-color="${correctColor}"]`).classList.add('correct');
                         colorFeedback.textContent = '🥳 Resposta correta! Você é incrível!';
-                        colorFeedback.classList.remove('text-red-600', 'text-rose-600');
-                        colorFeedback.classList.add('text-green-600');
+                        colorFeedback.classList.remove('text-red-400', 'text-fuchsia-400');
+                        colorFeedback.classList.add('text-green-400');
                         showMessage('Acertou! Parabéns, meu amor! ✨', 'success');
 
-                        colorOptions.forEach(option => option.classList.add('disabled')); // Desabilita todas as opções
+                        colorOptions.forEach(option => option.classList.add('disabled')); // Disables all options
                         
                     } else {
-                        // Se errou, apenas mostra feedback, não salva como "respondido"
-                        selectedColor = null; // Reseta a seleção para a próxima tentativa
-                        colorOptions.forEach(opt => opt.classList.remove('selected')); // Remove a seleção incorreta
+                        // If incorrect, just show feedback, don't save as "answered"
+                        selectedColor = null; // Resets selection for next attempt
+                        colorOptions.forEach(opt => opt.classList.remove('selected')); // Removes incorrect selection
                         colorFeedback.textContent = `Ops! A cor selecionada não é a correta. Tente novamente! 😉`;
-                        colorFeedback.classList.remove('text-green-600');
-                        colorFeedback.classList.add('text-red-600');
+                        colorFeedback.classList.remove('text-green-400');
+                        colorFeedback.classList.add('text-red-400');
                         showMessage(`Não foi dessa vez. Tente novamente! 😉`, 'info');
                     }
                     checkUnlockConditions();
@@ -1075,7 +1059,7 @@
             });
         }
 
-        // --- Eventos de Carregamento ---
+        // --- Loading Events ---
 
         window.addEventListener('load', () => {
             const loadingOverlay = document.getElementById('loading-overlay');
@@ -1083,29 +1067,29 @@
 
             loadVouchers();
             renderVouchers();
-            renderGallery(); // Renderiza a galeria ao carregar
-            loadQuizState(); // Chama para carregar o estado e configurar a interface
-            setupQuizListeners(); // Configura os listeners dos botões do quiz
+            renderGallery(); // Renders the gallery on load
+            loadQuizState(); // Calls to load state and set up the interface
+            setupQuizListeners(); // Sets up quiz button listeners
 
-            // A chamada checkUnlockConditions() já está dentro de loadQuizState() e dos listeners.
-            // Aqui, apenas garantimos que a visibilidade inicial está correta.
+            // The checkUnlockConditions() call is already within loadQuizState() and the listeners.
+            // Here, we just ensure the initial visibility is correct.
             if (!(isDatingDateAnsweredCorrectly && isColorAnsweredCorrectly)) {
                 quizGate.style.display = 'block';
                 mainContentLocked.classList.remove('unlocked');
-                document.getElementById('music-controls').classList.add('hidden'); // Esconde os controles de música
+                document.getElementById('music-controls').classList.add('hidden'); // Hides music controls
             } else {
                 quizGate.style.display = 'none';
                 mainContentLocked.classList.add('unlocked');
-                loadSong(currentSongIndex); // Carrega a primeira música
-                // Não inicia o play aqui, mas mostra os controles.
-                document.getElementById('music-controls').classList.remove('hidden'); // Mostra os controles de música
+                loadSong(currentSongIndex); // Loads the first song
+                // Does not start playing here, but shows controls.
+                document.getElementById('music-controls').classList.remove('hidden'); // Shows music controls
             }
 
-            // Adiciona listeners para os botões de música
+            // Adds listeners for music buttons
             playPauseButton.addEventListener('click', togglePlayPause);
             prevMusicButton.addEventListener('click', prevSong);
             nextMusicButton.addEventListener('click', nextSong);
-            // Quando a música termina, toca a próxima automaticamente
+            // When music ends, plays the next one automatically
             backgroundMusic.addEventListener('ended', nextSong);
         });
 
